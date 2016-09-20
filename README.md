@@ -18,4 +18,6 @@ The test name is used several times in this process, so I abstracted it into a v
 
 The goal of creating the library was to abstract away all the lines in the script that I repeated for every test. This makes the tests readable and simple tests very fast to create.
 
+So far I have inserted the test library, and a simple test file.
+It needs something to test, though.
 
