@@ -2,7 +2,7 @@
 
 source libtest.sh
 
-init ../your-script
+init ../mywc.sh
 
 # callback function required by the test lib
 # modify for your needs.
@@ -37,6 +37,17 @@ function no_param {
     check $test false $result_val
 }
 
+function count_data {
+    # data is the name of a test file
+    
+    $PROGRAM ../data > $t/$test.out 2>&1
+    result_val=$?
+    
+
+    check $test true $result_val
+    
+}
+
 function mock_db {
     # Here we create mock access to the database.
     # The script is a shell script that uses "mysql".
@@ -53,7 +64,7 @@ function mock_db {
     }
     export -f mysql
 
-    $PROGRAM 1001 >$t/$test.out 2>&1
+    $PROGRAM --db 1001 >$t/$test.out 2>&1
     )
     result_val=$?
 
@@ -68,6 +79,7 @@ function mock_db {
 
 # run the tests
 test_init no_param
+test_init count_data
 test_init mock_db
 
 # wrap up
